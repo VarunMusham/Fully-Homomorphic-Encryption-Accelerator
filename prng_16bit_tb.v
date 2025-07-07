@@ -1,4 +1,5 @@
 `timescale 1ns/1ps
+// TO GET RANDOMIZED SEED IN MODELSIM , use this command while simulating -> vsim -sv_seed random work.prng_16bit_tb
 
 module prng_16bit_tb;
 
@@ -29,7 +30,8 @@ rst = 0 ;
 
 //loading a custom seed 
 loadseed = 1; 
-seed = $random % 16;
+seed = $urandom_range(1, 15); 
+$display("Random Seed: %b (%0d)", seed, seed);
 #10; 
 loadseed = 0;
 
@@ -47,3 +49,4 @@ $finish;
 end
 
 endmodule
+
